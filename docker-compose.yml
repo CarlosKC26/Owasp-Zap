@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  OwaspZap:
+    image: owasp/zap2docker-stable
+    build:
+      context: ./
+    container_name: OwaspZapCompose
+    ports:
+      - "8090:8090"
+    host: 0.0.0.0
+    config:
+      - addrs.addr.name=.*
+      - api.addrs.addr.regex=true
+    restart: unless-stopped
